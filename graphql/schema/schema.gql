@@ -1,0 +1,71 @@
+type Utilisateur {
+    id: Int!
+    pseudo: String!
+    motdepasse: String!
+}
+
+type Ecole {
+    id: Int!
+    nom: String!
+    description: String!
+    adresse: String!
+}
+
+type Matiere {
+    id: Int!
+    nom: String!
+}
+
+type Classe {
+    id: Int!
+    nom: String!
+    salle: String!
+}
+
+type Intervenant {
+    id: Int!
+    prenom: String!
+    nom: String!
+    email: String!
+    telephone: String!
+    classe: [Classe!]!
+    matiere: Matiere!
+}
+
+type Etudiant {
+    id: Int!
+    prenom: String!
+    nom: String!
+    email: String!
+    telephone: String!
+    classe: Classe!
+    matiere: [Matiere!]!
+}
+
+type Note {
+    id: Int!
+    val: Int!
+    classe: Classe!
+    matiere: Matiere!
+    intervenant: Intervenant!
+    etudiant: Etudiant!
+}
+
+enum Jours {
+    Lundi
+    Mardi
+    Mercredi
+    Jeudi
+    Vendredi
+}
+
+type Cour {
+    id: Int!
+    jour: Jours!
+    debut: String! # Heure de début
+    fin: String! # Heure de fin
+    duree: Int!
+    classe: Classe!
+    matiere: Matiere!
+    intervenant: Intervenant!
+}

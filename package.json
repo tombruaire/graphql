@@ -1,0 +1,28 @@
+{
+  "name": "graphql-api-ecoles",
+  "version": "1.0.0",
+  "description": "Gestion d'une API d'écoles",
+  "main": "index.js",
+  "scripts": {
+    "generate": "graphql-codegen --config codegen.yml",
+    "serve": "tsx watch back/src",
+    "compile": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@apollo/server": "^4.10.4",
+    "@biomejs/biome": "^1.7.3",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.7",
+    "@graphql-codegen/typescript-resolvers": "^4.1.0",
+    "@types/node": "^20.12.12",
+    "graphql": "^16.8.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
+  }
+}

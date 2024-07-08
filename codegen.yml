@@ -1,0 +1,37 @@
+schema: "./graphql/schema/schema.gql"
+emitLegacyCommonJSImports: false
+require:
+  - ts-node/register
+generates:
+  ./graphql/src/resolvers.ts:
+    plugins:
+      - add:
+          content: |
+            export type DeepPartialGraphqlType<T> = T extends unknow
+              ? T extends Function | Data | Promise<unknown> | (() => any) | undefined
+                ? T
+                : T extends Array<infer U>
+                ? Array<undefined | DeepPartialGraphqlType<U>>
+                : T extends ReadonlyArray<infer V>
+                ? ReadonlyArray<undefined | DeepPartialGraphqlType<V>>
+                : T extends object
+                ? { [P in keyof T]?: undefined | DeepPartialGraphqlType<T[P]> }
+                : T
+              : never;
+      - typescript:
+        avoidOptionals:
+          field: true
+          inputValue: false
+          object: true
+          defaultValue: false
+      - typescript-resolvers:
+        defaultMapper: DeepPartialGraphqlType<{T}>
+    config:
+      useTypeImports: true
+      useIndexSignature: false
+      immutableTypes: true
+      nonOptionalTypename: true
+      defaultMapper: Partial<{T}>
+  ./graphql/src/schema.ts:
+    plugins:
+      - "./graphql/exportSchemaCodegenPlugin.cts"
