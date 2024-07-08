@@ -69,3 +69,37 @@ type Cour {
     matiere: Matiere!
     intervenant: Intervenant!
 }
+
+type Mutation {
+    ajouterUtilisateur(pseudo: String!, motdepasse: String!): Utilisateur
+    modifierUtilisateur(id: Int!, pseudo: String!, motdepasse: String!): Utilisateur
+    supprimerUtilisateur(id: Int!): Utilisateur
+
+    ajouterEcole(nom: String!, description: String!, adresse: String!): Ecole
+    modifierEcole(id: Int!, nom: String!, description: String!, adresse: String): Ecole
+    supprimerEcole(id: Int!): Ecole
+
+    ajouterMatiere(nom: String!): Matiere
+    modifierMatiere(id: Int!, nom: String!): Matiere
+    supprimerMatiere(id: Int!): Matiere
+
+    ajouterClasse(nom: String!, salle: String!): Classe
+    modifierClasse(id: Int!, nom: String!, salle: String!): Classe
+    supprimerClasse(id: Int!): Classe
+
+    ajouterIntervenant(prenom: String!, nom: String!, email: String!, telephone: String!, classe: [Classe!]!, matiere: Matiere!): Intervenant
+    modifierIntervenant(id: Int!, prenom: String!, nom: String!, email: String!, telephone: String!, classe: [Classe!]!, matiere: Matiere!): Intervenant
+    supprimerIntervenant(id: Int!): Intervenant
+
+    ajouterEtudiant(prenom: String!, nom: String!, email: String!, telephone: String!, classe: Classe!, matiere: [Matiere!]!): Etudiant
+    modifierEtudiant(id: Int!, prenom: String!, nom: String!, email: String!, telephone: String!, classe: Classe!, matiere: [Matiere!]!): Etudiant
+    supprimerEtudiant(id: Int!): Etudiant
+
+    ajouterNote(val: Int!, classe: Classe!, matiere: Matiere!, intervenant: Intervenant!, etudiant: Etudiant!): Note
+    modifierNote(id: Int!, val: Int!, classe: Classe!, matiere: Matiere!, intervenant: Intervenant!, etudiant: Etudiant!): Note
+    supprimerNote(id: Int!): Note
+
+    ajouterCours(jour: Jours!, debut: String!, fin: String!, duree: Int!, classe: Classe!, matiere: Matiere!, intervenant: Intervenant!): Cour
+    modifierCours(id: Int!, jour: Jours!, debut: String!, fin: String!, duree: Int!, classe: Classe!, matiere: Matiere!, intervenant: Intervenant!): Cour
+    supprimerCours(id: Int!): Cour
+}
